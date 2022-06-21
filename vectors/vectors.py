@@ -9,19 +9,22 @@ class Vector:
     """Two-dimensional vector represented in cartesian coordinates."""
     x: float
     y: float
+    z: float
 
-    def __init__(self, x: float, y: float) -> None:
+    def __init__(self, x: float, y: float, z: float) -> None:
         """Instantiate a vector from cartesian coordinates."""
         self.x = x
         self.y = y
+        self.z = z
 
     def __iter__(self) -> Iterator[float]:
         """Iterate through the pair of coordinates."""
         yield self.x
         yield self.y
+        yield self.z
 
     def __str__(self) -> str:
-        return f"({self.x}, {self.y})"
+        return f"({self.x}, {self.y}, {self.z})"
 
     def __add__(self, vector: Vector, /) -> Vector:
         """(+) Add caller vector with parameter vector, without modification to vector."""
@@ -71,7 +74,7 @@ class Vector:
         """(@) Find the dot product of two vectors."""
         return self.dot(vector)
 
-    def __mod__(self, vector: Vector, /) -> float:
+    def __mod__(self, vector: Vector, /) -> Vector:
         """(%) Find the cross product of two vectors."""
         return self.cross(vector)
 
@@ -79,48 +82,55 @@ class Vector:
         """Set coordinates of caller vector to match parameter vector."""
         self.x = vector.x
         self.y = vector.y
+        self.z = vector.z
         return self
 
     def add(self, vector: Vector, /) -> Vector:
         """Add caller vector with parameter vector, with modification to caller vector."""
         self.x += vector.x
         self.y += vector.y
+        self.z += vector.z
         return self
 
     def sub(self, vector: Vector, /) -> Vector:
         """Subtract parameter vector from caller vector, with modification to caller vector."""
         self.x -= vector.x
         self.y -= vector.y
+        self.z -= vector.z
         return self
 
     def mul(self, multiplier: float, /) -> Vector:
         """Multiply vector coordinates by a number, with modification to vector."""
         self.x *= multiplier
         self.y *= multiplier
+        self.z *= multiplier
         return self
 
     def div(self, divisor: float, /) -> Vector:
         """Divide vector coordinates by a number, with modification to vector."""
         self.x /= divisor
         self.y /= divisor
+        self.z /= divisor
         return self
 
     def len(self) -> float:
         """Find the distance to the origin."""
-        return hypot(self.x, self.y)
+        return hypot(self.x, self.y, self.z)
 
     def dist(self, vector: Vector, /) -> float:
         """Find the distance between two vectors."""
-        return hypot(self.x - vector.x, self.y - vector.y)
+        return hypot(self.x - vector.x, self.y - vector.y, self.z - vector.z)
 
     def dot(self, vector: Vector, /) -> float:
         """Find the dot product of two vectors."""
-        return self.x * vector.x + self.y * vector.y
+        return self.x * vector.x + self.y * vector.y + self.z * vector.z
 
-    def cross(self, vector: Vector, /) -> float:
+    def cross(self, vector: Vector, /) -> Vector:
         """Find the cross product of two vectors."""
-        return self.x * vector.y - self.y * vector.x
+        return Vector(self.y * vector.z - self.z * vector.y,
+                      self.z * vector.x - self.x * vector.z,
+                      self.x * vector.y - self.y * vector.x)
 
     def copy(self) -> Vector:
         """Copy the vector instance."""
-        return Vector(self.x, self.y)
+        return Vector(self.x, self.y, self.z)
