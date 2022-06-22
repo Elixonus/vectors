@@ -1,4 +1,4 @@
-"""Module for dealing with two-dimensional vectors."""
+"""Module for dealing with three-dimensional vectors."""
 
 from __future__ import annotations
 from math import hypot
@@ -6,7 +6,7 @@ from collections.abc import Iterator
 
 
 class Vector:
-    """Two-dimensional vector represented in cartesian coordinates."""
+    """Three-dimensional vector represented in cartesian coordinates."""
     x: float
     y: float
     z: float
