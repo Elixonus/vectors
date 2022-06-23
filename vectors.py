@@ -42,25 +42,25 @@ class Vector:
         """(-=) Subtract parameter vector from caller vector, with modification to caller vector."""
         return self.sub(vector)
 
-    def __mul__(self, multiplier: float, /) -> Vector:
+    def __mul__(self, number: float, /) -> Vector:
         """(*) Multiply vector coordinates by a number, without modification to vector."""
-        return self.copy().mul(multiplier)
+        return self.copy().mul(number)
 
-    def __rmul__(self, multiplier: float, /) -> Vector:
+    def __rmul__(self, number: float, /) -> Vector:
         """(*) Multiply vector coordinates by a number, without modification to vector."""
-        return self.copy().mul(multiplier)
+        return self.copy().mul(number)
 
-    def __imul__(self, multiplier: float, /) -> Vector:
+    def __imul__(self, number: float, /) -> Vector:
         """(*=) Multiply vector coordinates by a number, with modification to vector."""
-        return self.mul(multiplier)
+        return self.mul(number)
 
-    def __truediv__(self, divisor: float, /) -> Vector:
+    def __truediv__(self, number: float, /) -> Vector:
         """(/) Divide vector coordinates by a number, without modification to vector."""
-        return self.copy().div(divisor)
+        return self.copy().div(number)
 
-    def __itruediv__(self, divisor: float, /) -> Vector:
+    def __itruediv__(self, number: float, /) -> Vector:
         """(/=) Divide vector coordinates by a number, with modification to vector."""
-        return self.div(divisor)
+        return self.div(number)
 
     def __pos__(self) -> Vector:
         """(+) Return the same vector instance."""
@@ -99,18 +99,18 @@ class Vector:
         self.z -= vector.z
         return self
 
-    def mul(self, multiplier: float, /) -> Vector:
+    def mul(self, number: float, /) -> Vector:
         """Multiply vector coordinates by a number, with modification to vector."""
-        self.x *= multiplier
-        self.y *= multiplier
-        self.z *= multiplier
+        self.x *= number
+        self.y *= number
+        self.z *= number
         return self
 
-    def div(self, divisor: float, /) -> Vector:
+    def div(self, number: float, /) -> Vector:
         """Divide vector coordinates by a number, with modification to vector."""
-        self.x /= divisor
-        self.y /= divisor
-        self.z /= divisor
+        self.x /= number
+        self.y /= number
+        self.z /= number
         return self
 
     def len(self) -> float:
