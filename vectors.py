@@ -127,9 +127,11 @@ class Vector:
 
     def cross(self, vector: Vector, /) -> Vector:
         """Find the cross product of two vectors."""
-        return Vector(self.y * vector.z - self.z * vector.y,
-                      self.z * vector.x - self.x * vector.z,
-                      self.x * vector.y - self.y * vector.x)
+        return Vector(
+            self.y * vector.z - self.z * vector.y,
+            self.z * vector.x - self.x * vector.z,
+            self.x * vector.y - self.y * vector.x
+        )
 
     def copy(self) -> Vector:
         """Copy the vector instance."""
