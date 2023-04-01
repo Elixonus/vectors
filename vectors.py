@@ -7,6 +7,7 @@ from collections.abc import Iterator
 
 class Vector:
     """Three-dimensional vector represented in cartesian coordinates."""
+
     x: float
     y: float
     z: float
@@ -18,7 +19,7 @@ class Vector:
         self.z = z
 
     def __iter__(self) -> Iterator[float]:
-        """Iterate through the pair of coordinates."""
+        """Iterate through the triplet of coordinates."""
         yield self.x
         yield self.y
         yield self.z
@@ -130,7 +131,7 @@ class Vector:
         return Vector(
             self.y * vector.z - self.z * vector.y,
             self.z * vector.x - self.x * vector.z,
-            self.x * vector.y - self.y * vector.x
+            self.x * vector.y - self.y * vector.x,
         )
 
     def copy(self) -> Vector:
